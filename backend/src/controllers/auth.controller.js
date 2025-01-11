@@ -35,7 +35,8 @@ export const signup = async (req, res) => {
             firstName,
             lastName,
             email,
-            password: hashedPassword
+            password: hashedPassword,
+            profilePic
         });
 
         if (!newUser) {
@@ -75,7 +76,7 @@ export const login = async (req, res) => {
 
         if (!user) {
             return res.status(400).json({
-                message: "Either email or password is wrong"
+                message: "Invalid credentials"
             });
         }
 
@@ -83,7 +84,7 @@ export const login = async (req, res) => {
 
         if (!isPasswordCorrect) {
             return res.status(400).json({
-                message: "Either email or password is wrong"
+                message: "Invalid credentials"
             });
         }
 
@@ -132,8 +133,7 @@ export const updateProfile = async (req, res) => {
         }
 
         const cloudinaryResponse = await cloudinary.uploader.upload(profilePic);
-
-        const updatedUser = await User.findOneAndUpdate(user._id, { profilePic: cloudinaryResponse.secureUrl }, { new: true });
+        const updatedUser = await User.findByIdAndUpdate(user._id, { profilePic: cloudinaryResponse.secure_url }, { new: true }).select("-password");
 
         return res.status(200).json({
             updatedUser
@@ -146,7 +146,7 @@ export const updateProfile = async (req, res) => {
     }
 }
 
-export const checkAuth = (req,res)=>{
+export const checkAuth = (req, res) => {
     try {
         return res.status(200).json(req.user);
     } catch (error) {
