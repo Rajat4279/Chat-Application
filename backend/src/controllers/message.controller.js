@@ -31,7 +31,7 @@ export const getMessages = async (req, res) => {
 
         return res.status(200).json(messages);
     } catch (error) {
-        console.log(`Error in src/controllers/auth.controller.js/getMessages: ${error}`);
+        console.log(`Error in src/controllers/message.controller.js/getMessages: ${error}`);
         return res.status(500).json({
             message: "Internal Server Error"
         });
@@ -48,7 +48,7 @@ export const sendMessage = async (req, res) => {
 
         if (image) {
             const cloudinaryUpload = await cloudinary.uploader.upload(image);
-            imageUrl = cloudinaryUpload.secureUrl;
+            imageUrl = cloudinaryUpload.secure_url;
         }
 
         const newMessage = new Message({
@@ -60,9 +60,9 @@ export const sendMessage = async (req, res) => {
 
         await newMessage.save();
 
-        res.status(201).json(newMessage);
+        return res.status(201).json(newMessage);
     } catch (error) {
-        console.log(`Error in src/controllers/auth.controller.js/sendMessage: ${error}`);
+        console.log(`Error in src/controllers/message.controller.js/sendMessage: ${error}`);
         return res.status(500).json({
             message: "Internal Server Error"
         });
