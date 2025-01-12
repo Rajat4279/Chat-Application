@@ -6,7 +6,8 @@ Walkiee Talkiee is a real-time chat application designed to provide seamless and
 ---
 
 ## Video Demo
-![Walkiee Talkiee Demo](https://www.loom.com/share/3c13744f0abf4b298de1a6ef098ac765?sid=36fc896b-37aa-4827-bce2-db7ed04bf103)
+Check out the live demo of Walkiee Talkiee:  
+[[Walkiee Talkiee Demo]](https://www.loom.com/share/3c13744f0abf4b298de1a6ef098ac765)
 
 ---
 
@@ -53,7 +54,7 @@ Walkiee Talkiee is a real-time chat application designed to provide seamless and
 - Cloudinary for media storage
 
 ### Deployment
-- Backend and Frontend are hosted on [Render.com](https:://render.com).
+- Backend and Frontend are hosted on [Render](https://render.com).
 
 ---
 
